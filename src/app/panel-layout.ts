@@ -246,7 +246,8 @@ export class PanelLayoutManager implements AppModule {
             const local =
               this.ctx.isDesktopApp ||
               location.hostname === "localhost" ||
-              location.hostname === "127.0.0.1";
+              location.hostname === "127.0.0.1" ||
+              location.hostname === "not-world-monitor.netlify";
             const inIframe = window.self !== window.top;
             const vHref = (v: string, prod: string) =>
               local || SITE_VARIANT === v ? "#" : prod;
