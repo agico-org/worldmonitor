@@ -243,32 +243,16 @@ export class PanelLayoutManager implements AppModule {
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
           </button>
           <div class="variant-switcher">${(() => {
-            const local =
-              this.ctx.isDesktopApp ||
-              location.hostname === "localhost" ||
-              location.hostname === "127.0.0.1" ||
-              location.hostname === "not-world-monitor.netlify";
-            const inIframe = window.self !== window.top;
-            const vHref = (v: string, prod: string) =>
-              local || SITE_VARIANT === v ? "#" : prod;
-            const vTarget = (v: string) =>
-              !local && SITE_VARIANT !== v && inIframe
-                ? 'target="_blank" rel="noopener"'
-                : "";
             return `
-            <a href="${vHref("finance", "https://finance.worldmonitor.app")}"
-               class="variant-option ${SITE_VARIANT === "finance" ? "active" : ""}"
+            <a class="variant-option ${SITE_VARIANT === "finance" ? "active" : ""}"
                data-variant="finance"
-               ${vTarget("finance")}
                title="${t("header.finance")}${SITE_VARIANT === "finance" ? ` ${t("common.currentVariant")}` : ""}">
               <span class="variant-icon">📈</span>
               <span class="variant-label">${t("header.finance")}</span>
             </a>
             <span class="variant-divider"></span>
-            <a href="${vHref("commodity", "https://commodity.worldmonitor.app")}"
-               class="variant-option ${SITE_VARIANT === "commodity" ? "active" : ""}"
+            <a class="variant-option ${SITE_VARIANT === "commodity" ? "active" : ""}"
                data-variant="commodity"
-               ${vTarget("commodity")}
                title="${t("header.commodity")}${SITE_VARIANT === "commodity" ? ` ${t("common.currentVariant")}` : ""}">
               <span class="variant-icon">⛏️</span>
               <span class="variant-label">${t("header.commodity")}</span>
@@ -296,7 +280,6 @@ export class PanelLayoutManager implements AppModule {
           </button>
         </div>
         <div class="header-right">
-          ${SITE_VARIANT === "happy" ? `<button class="tv-mode-btn" id="tvModeBtn" title="TV Mode (Shift+T)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></button>` : ""}
           <span id="unifiedSettingsMount"></span>
           <span id="authWidgetMount"></span>
         </div>
